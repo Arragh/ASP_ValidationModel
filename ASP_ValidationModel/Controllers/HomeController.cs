@@ -52,14 +52,15 @@ namespace ASP_ValidationModel.Controllers
             return View(model);
         }
 
+
+
+
         public IActionResult CreateSubsection(AddSubsectionViewModel model = null, string sectionId = "")
         {
-            ViewBag.Subsections = db.Subsections;
-
-            if (sectionId != "")
-            {
-                model.SectionId = sectionId;
-            }
+            //if (sectionId != "")
+            //{
+            //    model.SectionId = sectionId;
+            //}
             return View(model);
         }
         [HttpPost]
@@ -82,7 +83,7 @@ namespace ASP_ValidationModel.Controllers
                 db.Subsections.Add(subsection);
                 db.SaveChanges();
 
-                return View(model);
+                return RedirectToAction("Index", "Home");
             }
 
             return RedirectToAction("CreateSubsection", "Home", new { model.SectionId });
