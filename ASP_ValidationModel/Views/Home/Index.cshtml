@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ASP_ValidationModel.Models.Section>
+
+<h3>INDEX</h3>
+
+@foreach (var item in Model)
+	{
+		 @Html.ActionLink(item.SectionTitle, "CreateSubsection", "Home", new { SectionId = item.Id })
+	<br />
+	}
+<br /><br />
+@Html.ActionLink("Создать раздел", "CreateSection", "Home")

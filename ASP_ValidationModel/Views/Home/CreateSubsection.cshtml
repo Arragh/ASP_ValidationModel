@@ -1,0 +1,9 @@
+﻿@model ASP_ValidationModel.ViewModels.AddSubsectionViewModel
+
+<form asp-action="CreateSubsection" asp-controller="Home">
+    <input type="hidden" asp-for="SectionId" value="@Model.SectionId" />
+    <label asp-for="SubsectionTitle"></label>
+    <input type="text" asp-for="SubsectionTitle" />
+    <span asp-validation-for="SubsectionTitle"></span><br />
+    <input type="submit" value="Создать" />
+</form>

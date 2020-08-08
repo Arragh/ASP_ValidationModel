@@ -1,0 +1,8 @@
+﻿@model ASP_ValidationModel.ViewModels.AddSectionViewModel
+
+<form asp-action="CreateSection" asp-controller="Home">
+    <label asp-for="SectionTitle"></label>
+    <input type="text" asp-for="SectionTitle" />
+    <span asp-validation-for="SectionTitle"></span><br />
+    <input type="submit" value="Создать" />
+</form>
