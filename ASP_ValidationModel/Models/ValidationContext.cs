@@ -8,8 +8,6 @@ namespace ASP_ValidationModel.Models
 {
     public class ValidationContext : DbContext
     {
-        public DbSet<Section> Sections { get; set; }
-        public DbSet<Subsection> Subsections { get; set; }
         public ValidationContext(DbContextOptions<ValidationContext> options) : base(options)
         {
             Database.EnsureCreated();
