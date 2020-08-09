@@ -33,6 +33,10 @@ namespace ASP_ValidationModel.Controllers
             {
                 ModelState.AddModelError("Name", "Имя слишком короткое");
             }
+            if (model.Age < 10)
+            {
+                ModelState.AddModelError("Age", "Извини, но ты еще молокосос и не можешь регистрироваться");
+            }
 
             if (ModelState.IsValid)
             {

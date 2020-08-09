@@ -9,8 +9,10 @@ namespace ASP_ValidationModel.ViewModels
     public class PersonViewModel
     {
         [Required(ErrorMessage = "Необходимо ввести имя")]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
         [Required(ErrorMessage = "Необходимо ввести адрес электронной почты")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required(ErrorMessage = "Необходимо ввести пароль")]
         [DataType(DataType.Password)]
