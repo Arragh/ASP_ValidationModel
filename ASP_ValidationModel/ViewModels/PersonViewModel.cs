@@ -11,13 +11,14 @@ namespace ASP_ValidationModel.ViewModels
         [Required(ErrorMessage = "Введите своё имя")]
         [StringLength(100, ErrorMessage = "Имя должно содержать от {2} до {1} символов.", MinimumLength = 6)]
         [DataType(DataType.Text)]
+        [Display(Name = "Имя пользователя")]
         public string Name { get; set; }
 
         //[Required(ErrorMessage = "Необходимо ввести адрес электронной почты")]
         //[DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Укажите адрес электронной почты")]
         [EmailAddress(ErrorMessage = "Укажите корректный адрес")]
-        [Display(Name = "Email")]
+        [Display(Name = "Адрес Email")]
         public string Email { get; set; }
 
         //[Required(ErrorMessage = "Необходимо ввести пароль")]

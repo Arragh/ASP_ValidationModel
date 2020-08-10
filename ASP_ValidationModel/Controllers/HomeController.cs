@@ -18,9 +18,9 @@ namespace ASP_ValidationModel.Controllers
             return View();
         }
 
-        public IActionResult Create(PersonViewModel model = null, string emptyString = "")
+        public IActionResult Create() //(PersonViewModel model = null, string emptyString = "")
         {
-            return View(model);
+            return View(); //(model);
         }
         [HttpPost]
         public IActionResult Create(PersonViewModel model)
