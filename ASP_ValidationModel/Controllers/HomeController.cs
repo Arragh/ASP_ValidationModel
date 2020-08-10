@@ -25,14 +25,7 @@ namespace ASP_ValidationModel.Controllers
         [HttpPost]
         public IActionResult Create(PersonViewModel model)
         {
-            if (string.IsNullOrEmpty(model.Name))
-            {
-                ModelState.AddModelError("Name", "Необходимо ввести имя");
-            }
-            else if (model.Name.Length < 5)
-            {
-                ModelState.AddModelError("Name", "Имя слишком короткое");
-            }
+            // Делаем проверку возраста на стороне сервера, т.к. пока не нашел как это сделать на клиенте
             if (model.Age < 10)
             {
                 ModelState.AddModelError("Age", "Извини, но ты еще молокосос и не можешь регистрироваться");

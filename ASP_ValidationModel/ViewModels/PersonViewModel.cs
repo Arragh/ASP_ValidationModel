@@ -14,27 +14,25 @@ namespace ASP_ValidationModel.ViewModels
         [Display(Name = "Имя пользователя")]
         public string Name { get; set; }
 
-        //[Required(ErrorMessage = "Необходимо ввести адрес электронной почты")]
-        //[DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Укажите адрес электронной почты")]
         [EmailAddress(ErrorMessage = "Укажите корректный адрес")]
         [Display(Name = "Адрес Email")]
         public string Email { get; set; }
 
-        //[Required(ErrorMessage = "Необходимо ввести пароль")]
-        //[DataType(DataType.Password)]
         [Required(ErrorMessage = "Задайте пароль")]
         [StringLength(100, ErrorMessage = "Пароль должен содержать от {2} до {1} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Повторите пароль")]
         [DataType(DataType.Password)]
         [Display(Name = "Повторите пароль")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Необходимо указать возраст")]
+        [Display(Name = "Укажите свой возраст")]
         public int Age { get; set; }
     }
 }
