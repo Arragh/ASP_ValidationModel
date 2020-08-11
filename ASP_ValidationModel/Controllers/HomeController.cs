@@ -1,20 +1,30 @@
 ﻿using ASP_ValidationModel.Models;
 using ASP_ValidationModel.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace ASP_ValidationModel.Controllers
 {
     public class HomeController : Controller
     {
         ValidationContext db;
-        public HomeController(ValidationContext context)
+        IWebHostEnvironment _appEnvironment;
+        public HomeController(ValidationContext context, IWebHostEnvironment appEnvironment)
         {
             db = context;
+            _appEnvironment = appEnvironment;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.People = await db.People.ToListAsync();
+
             return View();
         }
 
@@ -23,7 +33,7 @@ namespace ASP_ValidationModel.Controllers
             return View(); //(model);
         }
         [HttpPost]
-        public IActionResult Create(PersonViewModel model)
+        public async Task <IActionResult> Create(PersonViewModel model, IFormFile uploadedFile)
         {
             // Делаем проверку возраста на стороне сервера, т.к. пока не нашел как это сделать на клиенте
             if (model.Age < 10)
@@ -42,8 +52,20 @@ namespace ASP_ValidationModel.Controllers
                     Age = model.Age
                 };
 
-                db.People.Add(person);
-                db.SaveChanges();
+                if (uploadedFile != null)
+                {
+                    string path = "/avatars/" + uploadedFile.FileName;
+                    using (FileStream fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await uploadedFile.CopyToAsync(fileStream);
+                    }
+
+                    person.AvatarName = uploadedFile.FileName;
+                    person.AvatarPath = path;
+                }
+
+                await db.People.AddAsync(person);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
             return View(model);

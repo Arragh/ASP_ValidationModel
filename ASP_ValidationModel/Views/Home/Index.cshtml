@@ -1,4 +1,11 @@
-﻿
+﻿@model ASP_ValidationModel.Models.Person
+
+@foreach (var item in ViewBag.People)
+{
+    @item.Name<br />
+    <img src="@Url.Content(item.AvatarPath)"><br /><br />
+}
+
 <h3>INDEX</h3>
 
 @Html.ActionLink("Метод CREATE", "Create", "Home")
