@@ -26,10 +26,12 @@
         <div>
             <label asp-for="Age"></label><br />
             <input asp-for="Age" class="form-control" />
-            <span asp-validation-for="Age" class="text-danger"></span>
+            <span asp-validation-for="Age" class="text-danger"></span><br />
         </div>
         <div>
-            <input type="file" name="uploadedFile" /><br>
+            <label asp-for="AvatarPath"></label><br />
+            <input type="file" name="uploadedFile" />
+            <span asp-validation-for="AvatarPath" class="text-danger"></span><br />
         </div>
         <div>
             <input type="submit" value="Save" />

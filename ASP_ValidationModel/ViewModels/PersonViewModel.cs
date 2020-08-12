@@ -34,5 +34,8 @@ namespace ASP_ValidationModel.ViewModels
         [Required(ErrorMessage = "Необходимо указать возраст")]
         [Display(Name = "Укажите свой возраст")]
         public int Age { get; set; }
+
+        [Display(Name = "Загрузить аватар")]
+        public string AvatarPath { get; set; }
     }
 }

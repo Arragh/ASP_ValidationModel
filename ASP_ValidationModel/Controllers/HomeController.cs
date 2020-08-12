@@ -35,6 +35,10 @@ namespace ASP_ValidationModel.Controllers
         [HttpPost]
         public async Task <IActionResult> Create(PersonViewModel model, IFormFile uploadedFile)
         {
+            if (uploadedFile.Length > 20000)
+            {
+                ModelState.AddModelError("AvatarPath", "Файл слишком большой");
+            }
             // Делаем проверку возраста на стороне сервера, т.к. пока не нашел как это сделать на клиенте
             if (model.Age < 10)
             {
